@@ -107,6 +107,7 @@ define(
           data: payload,
           success: function(data) {
             $this.post_request(data);
+            $this.trigger(document, "removeSentElements", {"ids": payload.objectids});
           },
           error: function(request, status, error) {
             console.log(error);
