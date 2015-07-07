@@ -253,3 +253,23 @@ HARVESTER_WORKFLOWS_CONFIG = {
     # Specify special config locally.
     # Expected params: ftp_server, ftp_netrc_file and recipients
 }
+
+# SEARCH_ELASTIC_KEYWORD_MAPPING -- this variable holds a dictionary to map
+# invenio keywords to elasticsearch fields
+SEARCH_ELASTIC_KEYWORD_MAPPING = {
+    "author": {
+        'a': ["authors.personal_name"],
+        'p': ["authors.personal_name"],
+        'e': ['authors.raw'],
+    },
+    "collection": ["_collections"],
+    "title": ["title_statement.title"],
+    "980": [
+        "collections.primary",
+        "collections.secondary",
+        "collections.deleted",
+    ],
+    "980__a": ["collections.primary"],
+    "980__b": ["collections.secondary"],
+    "542__l": ["information_relating_to_copyright_status.copyright_status"],
+}
