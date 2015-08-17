@@ -84,6 +84,7 @@ PACKAGES = [
     'inspire.modules.authors',
     'inspire.modules.predicter',
     'inspire.modules.deposit',
+    'inspire.modules.formatter',
     'inspire.modules.harvester',
     'inspire.modules.oaiharvester',
     'inspire.modules.forms',
