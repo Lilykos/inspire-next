@@ -227,19 +227,17 @@ class process_record_arxiv(RecordWorkflow, DepositionType):
     def formatter(bwo, **kwargs):
         """Nicely format the record."""
         from invenio_records.api import Record
-        import collections
 
-        data = bwo.get_data().dumps()
+        try:
+            data = bwo.get_data().dumps()
+        except AttributeError:
+            data = bwo.get_data()
+
         if not data:
             return ''
 
-        if isinstance(data, collections.Mapping):
-            try:
-                record = Record(data)
-            except (TypeError, KeyError):
-                pass
-
+        record = Record(data)
         return render_template(
             'format/record/Holding_Pen_HTML_detailed.tpl',
-            record=record
+            record=record['sips'][0]['metadata']
         )

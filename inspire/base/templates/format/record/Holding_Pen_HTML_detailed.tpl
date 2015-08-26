@@ -18,7 +18,7 @@
 #}
 {% block details_page %}
 
-{% from "format/record/Holding_Pen_HTML_detailed_macros.tpl" import get_arxiv_id, get_arxiv_category,get_subject, get_title, add_delimiter%}
+{% from "format/record/Holding_Pen_HTML_detailed_macros.tpl" import get_arxiv_id, get_subject, add_delimiter, get_abstract%}
 
 <div class="container col-md-12">
   <!-- Title Row -->
@@ -27,7 +27,7 @@
       <!-- Edit Button -->
         <a href='#' id='edit-title'><i class='fa fa-pencil-square-o'></i></a>
           <!-- Title -->
-          {{ get_title(record) }}
+          <strong><span id='title-text'>{{ record['title']['title'] }}</span></strong>
         </h4>
     </div>
 
@@ -63,7 +63,7 @@
     <div class="row">
       <div class="col-md-11">
         <b>e-Print:</b> <a href="http://arxiv.org/abs/arXiv:{{ get_arxiv_id(record)|trim }}">{{ get_arxiv_id(record) }}</a>
-        [{{ get_arxiv_category(record) }}]<b> | </b>
+        [{{ record['report_number'][0]['arxiv_category'] }}]<b> | </b>
         <b><a href="http://arXiv.org/pdf/{{ get_arxiv_id(record) }}.pdf">PDF</a></b>
       </div>
     </div><br>
@@ -73,7 +73,7 @@
     {% if record.abstract %}
     <div class="row">
       <div class="col-md-11">
-        <p align="justify"><strong>Abstract: </strong>{{ record['abstract']['summary'] }}</p>
+        <p align="justify"><strong>Abstract: </strong>{{ get_abstract(record) }}</p>
       </div>
     </div>
     {% endif %}

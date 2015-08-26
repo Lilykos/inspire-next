@@ -295,7 +295,7 @@ class literature(SimpleRecordDeposition, WorkflowBase):
                         'system_number_external': 'oai:arXiv.org:' + form_fields['arxiv_id'],
                         'institute': 'arXiv'
                     }
-        if metadata["publication_info"]:
+        if "publication_info" in metadata:
             metadata['collections'].append({'primary': "Published"})
         # ============================
         # Title source
